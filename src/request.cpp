@@ -1,6 +1,5 @@
 #include <string>
 #include <cstring>
-#include <iostream>
 #include "request.h"
 #include "buffer.h"
 
@@ -49,23 +48,20 @@ bool TRequest::parse(){
         if (is_token(&p, "http://")) skip(&p, "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_~.:@");
         if (!is(&p, '/')) 
 		{
-			std::cout << "find /" << std::endl;
 			return false;
 		}
         pth = p - 1;
-        skip(&p, "/ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_~.%&");
+        skip(&p, "/ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_~.%&=");
         if (is(&p, '?')) {
             len = p - pth - 1;
-            skip(&p, "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_~.%&");
+            skip(&p, "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_~.%&=");
             if (!is(&p, ' ')) 
 			{
-				std::cout << "find ' '" << std::endl;
 				return false;
 			}
         } else if (is(&p, ' ')) {
             len = p - pth - 1;
         } else {
-			std::cout << "not find end" << std::endl;
             return false;
         }
 //        if(!is_token(&p, "HTTP")) return false;
