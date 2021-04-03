@@ -48,10 +48,10 @@ bool TRequest::parse(){
         if (is_token(&p, "http://")) skip(&p, "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_~.:@");
         if (!is(&p, '/')) return false;
         pth = p - 1;
-        skip(&p, "/ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_~.%");
+        skip(&p, "/ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_~.%&");
         if (is(&p, '?')) {
             len = p - pth - 1;
-            skip(&p, "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_~.%");
+            skip(&p, "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_~.%&");
             if (!is(&p, ' ')) return false;
         } else if (is(&p, ' ')) {
             len = p - pth - 1;
